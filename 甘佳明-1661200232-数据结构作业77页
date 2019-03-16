@@ -1,0 +1,47 @@
+/*77页2、（1）*/
+template <class ElemType>
+Status SeqList<ElemType>::InsertElem(ElemType &e) {
+	bool isInsert = false;
+
+	for (int i = 0; i < length; i++) {
+		if (elems[i] <= e) {
+			for (int j = length-1; j>i; j--) {
+				elems[j + 1] = elems[j];
+			}
+			elems[i + 1] = e;
+			length++;
+			isInsert = true;
+		}
+	}
+
+	if (isInsert) {
+		return SUCCESS;
+	}
+	else {
+		return RANGE_ERROR;
+	}
+}
+
+
+
+/*77页2、（2）*/
+Status SeqList<ElemType>::DeleteElem(ElemType &e) {
+	bool isDelete = false;
+
+	for (int i = 0; i < length; i++) {
+		if (elems[i] == e) {
+			for (int j = i; ; j < length - 1; j++) {
+				elems[j] = elems[j+1];
+			}
+			length--;
+			isDelete = true;
+		}
+	}
+
+	if (isDelete) {
+		return SUCCESS;
+	}
+	else {
+		return RANGE_ERROR;
+	}
+}
